@@ -1,13 +1,13 @@
 class HomeController < ApplicationController
 
   def form
+    @survey = Survey.new
     if request.post?
-      Survey.create!(name: params[:name],
-        chocolate: params[:chocolate],
-        rainbows: params[:rainbows],
-        puppies: params[:puppies],
-        cash: params[:cold_hard_cash])
+      @survey = Survey.create!(survey_params)
     end
   end
 
+  private def survey_params
+    params.require(:survey).permit(:name, :chocolate, :puppies, :rainbows, :cash)
+  end
 end
