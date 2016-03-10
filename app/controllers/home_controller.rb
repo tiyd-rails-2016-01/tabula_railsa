@@ -1,10 +1,11 @@
 class HomeController < ApplicationController
 
-  def form
+  def new
     @survey = Survey.new
-    if request.post?
-      @survey = Survey.create!(survey_params)
-    end
+  end
+
+  def create
+    @survey = Survey.create!(survey_params)
   end
 
   private def survey_params
